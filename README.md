@@ -1,6 +1,6 @@
 ## 📊 Live Dashboard
 https://lookerstudio.google.com/reporting/e908db90-cb72-44b4-82f9-8441f62270cf 
-Only handik.yuwono@mandirisekuritas.co.id and aliffia.sakarosa@mandirisekuritas.co.id are able to access the dataset.
+handik.yuwono@mandirisekuritas.co.id and aliffia.sakarosa@mandirisekuritas.co.id are able to access the dataset.
 
 # Transaction Analytics Dashboard
 
