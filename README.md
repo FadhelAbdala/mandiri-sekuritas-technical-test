@@ -1,8 +1,6 @@
 ## 📊 Live Dashboard
 https://lookerstudio.google.com/reporting/e908db90-cb72-44b4-82f9-8441f62270cf 
 
-handik.yuwono@mandirisekuritas.co.id and aliffia.sakarosa@mandirisekuritas.co.id are able to access the dataset.
-
 # Transaction Analytics Dashboard
 
 This project provides an interactive **Transaction Analytics Dashboard** built with **Looker Studio** using **BigQuery** as the data source.  
