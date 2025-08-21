@@ -1,7 +1,7 @@
 # mandiri-sekuritas-technical-test
 Technical Test Assignment
 
-1) Goal
+**1) Goal**
 Produce reusable SQL views and exports to analyze user transaction behavior:
 Overview KPIs (txn count, value, avg ticket, active users)
 Trend over time (daily)
@@ -11,17 +11,18 @@ Segmentation by Age band
 
 
 These outputs are used to build a Looker Studio dashboard.
-2) Requirements
+
+**2) Requirements**
 Google BigQuery access to project mandiri-sekuritas-469605
 Permissions: BigQuery Job User + BigQuery Data Viewer (and BigQuery Data Owner if you will create views/tables)
 
 
-3) Data & Key Assumptions
+**3) Data & Key Assumptions**
 All timestamps in Transaction.date are converted to Asia/Jakarta using BigQuery’s DATETIME(timestamp, "Asia/Jakarta").
 Average Ticket = SUM(amount) / COUNT(*).
 Active Users = COUNT(DISTINCT client_id) for the aggregation period.
 
-4) How to Run 
+**4) How to Run** 
 Create reusable views 
 Copy each query below and wrap it with CREATE OR REPLACE VIEW. Example:
 CREATE OR REPLACE VIEW `mandiri-sekuritas-469605.MandiriSekuritas.kpi_overview` AS
@@ -33,7 +34,7 @@ channel_usage
 mcc_usage
 segmentation_age
 
-5) SQL — Queries (ready for View creation)
+**5) SQL — Queries (ready for View creation)**
 5.1 Overview KPIs — quantify activity & scale
 Purpose: Yearly KPI snapshot (uses Jakarta local date).
 WITH base AS (
@@ -105,7 +106,7 @@ GROUP BY year
 ORDER BY year;
 
 
-5.2 Trend Over Time — daily txn & value)
+**5.2 Trend Over Time — daily txn & value)**
 WITH base AS (...same as 5.1...), fact AS (...same as 5.1...)
 SELECT
   trade_date,
@@ -116,7 +117,7 @@ GROUP BY trade_date
 ORDER BY trade_date;
 
 
-5.3 Channel Usage — Chip vs Swipe (adoption & risk proxy)
+**5.3 Channel Usage — Chip vs Swipe (adoption & risk proxy)**
 WITH base AS (...same as 5.1...), fact AS (...same as 5.1...)
 SELECT
   channel,
@@ -127,7 +128,7 @@ GROUP BY channel
 ORDER BY txn_count DESC;
 
 
-5.4 Merchant Categories (MCC)
+**5.4 Merchant Categories (MCC)**
 WITH base AS (...same as 5.1...), fact AS (...same as 5.1...)
 SELECT
   mcc,
@@ -138,7 +139,7 @@ GROUP BY mcc
 ORDER BY total_value DESC;
 
 
-5.5 Segmentation by Age
+**5.5 Segmentation by Age**
 WITH base AS (...same as 5.1...), fact AS (...same as 5.1...)
 SELECT
   age_band,
@@ -150,10 +151,7 @@ FROM fact
 GROUP BY age_band
 ORDER BY age_band;
 
-
-
-
-7) Connect to Looker Studio
+**6) Connect to Looker Studio**
 Add data source → BigQuery → choose the views created (e.g., kpi_overview, trend_over_time, etc.).
 For time-series charts, set date field to:
 trade_date from trend_over_time, or
