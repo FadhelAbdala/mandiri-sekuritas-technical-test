@@ -78,6 +78,7 @@ The dashboard is powered by a **single enriched fact table** in BigQuery:
 ## 📈 Example Queries
 
 **Monthly KPIs**
+```sql
 SELECT
   FORMAT_DATE('%Y-%m', month_start) AS month,
   COUNT(*) AS txn_count,
@@ -87,11 +88,3 @@ SELECT
 FROM `project.dataset.fact_txn_enriched`
 GROUP BY month
 ORDER BY month;
-
-**Transaction Count by Hour**
-SELECT
-  hh AS hour_of_day,
-  COUNT(*) AS txn_count
-FROM `project.dataset.fact_txn_enriched`
-GROUP BY hour_of_day
-ORDER BY hour_of_day;
